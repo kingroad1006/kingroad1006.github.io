@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="平凡之路">
 <meta property="og:description" content="今天看代码看到有select name from user where id = 1 for update,有点懵逼，完全没有见过，只能说自己见识少了，那就只能学习一下。先做一下基本知识了解： 锁的基本概念　　当多事务争取一个资源时，有可能导致数据不一致，这个时候需要一种机制限制，并且将数据访问顺序化，用来保证数据库数据的一致性，锁就是其中的一种机制。我们可以用商场的试衣间来做个比喻，商场">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-08T06:44:11.827Z">
+<meta property="og:updated_time" content="2019-03-08T06:52:06.211Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql的排他锁和共享锁">
 <meta name="twitter:description" content="今天看代码看到有select name from user where id = 1 for update,有点懵逼，完全没有见过，只能说自己见识少了，那就只能学习一下。先做一下基本知识了解： 锁的基本概念　　当多事务争取一个资源时，有可能导致数据不一致，这个时候需要一种机制限制，并且将数据访问顺序化，用来保证数据库数据的一致性，锁就是其中的一种机制。我们可以用商场的试衣间来做个比喻，商场">
@@ -433,7 +433,7 @@
                 
               
 
-              <time title="创建时间：2019-03-08 14:35:23 / 修改时间：14:44:11" itemprop="dateCreated datePublished" datetime="2019-03-08T14:35:23+08:00">2019-03-08</time>
+              <time title="创建时间：2019-03-08 14:35:23 / 修改时间：14:52:06" itemprop="dateCreated datePublished" datetime="2019-03-08T14:35:23+08:00">2019-03-08</time>
             
 
             
@@ -504,22 +504,18 @@
 <h2 id="共享锁的使用场景"><a href="#共享锁的使用场景" class="headerlink" title="共享锁的使用场景"></a>共享锁的使用场景</h2><p>　　SELECT … LOCK IN SHARE MODE走的是IS锁(意向共享锁)，即在符合条件的rows上都加了共享锁，这样的话，其他人可以读取这些记录，也可以继续添加IS锁，但是无法修改这些记录直到你这个加锁的过程执行完成(完成的情况有：事务的提交，事务的回滚，否则直接锁等待超时)。<br>　　<br>　　SELECT … LOCK IN SHARE MODE的应用场景适合于两张表存在关系时的写操作，拿mysql官方文档的例子来说，一个表是child表，一个是parent表，假设child表的某一列child_id映射到parent表的c_child_id列，那么从业务角度讲，此时我直接insert一条child_id=100记录到child表是存在风险的，因为刚insert的时候可能在parent表里删除了这条c_child_id=100的记录，那么业务数据就存在不一致的风险。正确的方法是再插入时执行select * from parent where c_child_id=100 lock in share mode,锁定了parent表的这条记录，然后执行insert into child(child_id) values (100)就不会存在这种问题了。</p>
 <h2 id="排他锁-Exclusive-Lock，也叫X锁"><a href="#排他锁-Exclusive-Lock，也叫X锁" class="headerlink" title="排他锁(Exclusive Lock，也叫X锁)"></a>排他锁(Exclusive Lock，也叫X锁)</h2><p>　　排他锁也叫写锁(X)。</p>
 <p>　　排他锁表示对数据进行写操作。如果一个事务对对象加了排他锁，其他事务就不能再给它加任何锁了。(某个顾客把试衣间从里面反锁了，其他顾客想要使用这个试衣间，就只有等待锁从里面给打开了)<br>产生排他锁的sql： select * from ad_plan for update;看到了吧，for update出现了，所以for update 是排他锁，涨知识了。</p>
-<h2 id="排他锁的使用场景："><a href="#排他锁的使用场景：" class="headerlink" title="排他锁的使用场景："></a>排他锁的使用场景：</h2><ul>
-<li>使用场景一：订单的商品数量</li>
+<h2 id="排他锁的使用场景"><a href="#排他锁的使用场景" class="headerlink" title="排他锁的使用场景"></a>排他锁的使用场景</h2><ul>
+<li><p>使用场景一：订单的商品数量</p>
+<p>  但是如果是同一张表的应用场景，举个例子，电商系统中计算一种商品的剩余数量，在产生订单之前需要确认商品数量&gt;=1,产生订单之后应该将商品数量减1。</p>
+</li>
 </ul>
-<p>但是如果是同一张表的应用场景，举个例子，电商系统中计算一种商品的剩余数量，在产生订单之前需要确认商品数量&gt;=1,产生订单之后应该将商品数量减1。
-　　</p>
-<blockquote>
-<p>1 select amount from product where product_name=’XX’;<br>2 update product set amount=amount-1 where product_name=’XX’;</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select amount from product where product_name=&apos;XX&apos;;</span><br><span class="line">update product set amount=amount-1 where product_name=&apos;XX&apos;;</span><br></pre></td></tr></table></figure>
 <p>　　显然1的做法是是有问题，因为如果1查询出amount为1，但是这时正好其他session也买了该商品并产生了订单，那么amount就变成了0，那么这时第二步再执行就有问题。那么采用lock in share mode可行吗，也是不合理的，因为两个session同时锁定该行记录时，这时两个session再update时必然会产生死锁导致事务回滚。以下是操作范例(按时间顺序)</p>
 <ul>
 <li>使用场景二：数据表的状态</li>
 </ul>
 <p>　　如果存在一张表记录一个商品的状态，在订单的变化过程中，订单的状态是不断变化的，而且变化的过程中肯定也会有并发的问题，而且很多时候与其他系统有交互，会存在补偿的情况，所以并发的可能性很大,补偿或者为了增加状态修改的成功可能性，2次改变状态的情况也有，楼主就遇到了这种情况，真操蛋。于是看到有这样的for update写法。</p>
-<blockquote>
-<p>1  update order set status = 1 where product_id = ‘1’;<br>2 insert order_flow  (…………..) value (………)</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update order set status = 1 where product_id = &apos;1&apos;;</span><br><span class="line">2 insert order_flow  (..............) value (.........)</span><br></pre></td></tr></table></figure>
 <p>　　这样的情况下就有可能订单的状态已经更新完成了，但是补偿这些额外的消息把状态又更新为待处理或者插入了多条流水的情况(多条流水的可能性大，状态的那种可能补偿滞后)。这个时候就可以使用select …. from order where order_id = ‘1’ for update，先锁住要修改状态的表，这样就不会别人操作了，自己先后面把流水插入，然后更新状态，完美。但是加了锁之后性能就很慢了，担心性能影响，而且有可能存在死锁的情况，后面我就修改为流水表中增加一个唯一索引，这样插入流水报错就是已经处理过的记录了。这样就不会存在性能问题。</p>
 <p>　　通过对比，lock in share mode适用于两张表存在业务关系时的一致性要求，for  update适用于操作同一张表时的一致性要求。</p>
 
@@ -638,7 +634,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -674,11 +670,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -714,7 +706,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#锁的基本概念"><span class="nav-number">1.</span> <span class="nav-text">锁的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#锁的基本类型"><span class="nav-number">2.</span> <span class="nav-text">锁的基本类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#共享锁（Shared-Lock，也叫S锁）"><span class="nav-number">3.</span> <span class="nav-text">共享锁（Shared Lock，也叫S锁）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#共享锁的使用场景"><span class="nav-number">4.</span> <span class="nav-text">共享锁的使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排他锁-Exclusive-Lock，也叫X锁"><span class="nav-number">5.</span> <span class="nav-text">排他锁(Exclusive Lock，也叫X锁)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排他锁的使用场景："><span class="nav-number">6.</span> <span class="nav-text">排他锁的使用场景：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#锁的基本概念"><span class="nav-number">1.</span> <span class="nav-text">锁的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#锁的基本类型"><span class="nav-number">2.</span> <span class="nav-text">锁的基本类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#共享锁（Shared-Lock，也叫S锁）"><span class="nav-number">3.</span> <span class="nav-text">共享锁（Shared Lock，也叫S锁）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#共享锁的使用场景"><span class="nav-number">4.</span> <span class="nav-text">共享锁的使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排他锁-Exclusive-Lock，也叫X锁"><span class="nav-number">5.</span> <span class="nav-text">排他锁(Exclusive Lock，也叫X锁)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排他锁的使用场景"><span class="nav-number">6.</span> <span class="nav-text">排他锁的使用场景</span></a></li></ol></div>
             
 
           </div>

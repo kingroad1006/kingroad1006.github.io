@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.kingroad.site/2019/02/01/Hexo/</loc>
+    
+    <lastmod>2019-03-08T06:55:41.036Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.kingroad.site/2019/03/08/Mysql%E7%9A%84%E6%8E%92%E4%BB%96%E9%94%81%E5%92%8C%E5%85%B1%E4%BA%AB%E9%94%81/</loc>
     
-    <lastmod>2019-03-08T06:44:11.827Z</lastmod>
+    <lastmod>2019-03-08T06:52:06.211Z</lastmod>
     
   </url>
   
@@ -12,13 +19,6 @@
     <loc>https://blog.kingroad.site/2019/03/08/Mac-item2%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/</loc>
     
     <lastmod>2019-03-08T06:39:45.859Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.kingroad.site/2019/02/19/hello-hello/</loc>
-    
-    <lastmod>2019-02-25T03:19:01.889Z</lastmod>
     
   </url>
   
@@ -47,20 +47,6 @@
     <loc>https://blog.kingroad.site/categories/index.html</loc>
     
     <lastmod>2019-02-22T10:27:13.514Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.kingroad.site/2019/02/20/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/</loc>
-    
-    <lastmod>2019-02-20T08:57:39.952Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.kingroad.site/2019/02/19/hello-world/</loc>
-    
-    <lastmod>2019-02-19T06:12:33.399Z</lastmod>
     
   </url>
   
