@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://blog.kingroad.site/2019/03/08/Mysql%E7%9A%84%E6%8E%92%E4%BB%96%E9%94%81%E5%92%8C%E5%85%B1%E4%BA%AB%E9%94%81/</loc>
+    <loc>https://blog.kingroad.site/2019/03/08/GitHub%E7%9A%84Fork%E8%A7%A3%E8%AF%BB/</loc>
     <lastmod>2019-03-08</lastmod>
   </url>  <url>
     <loc>https://blog.kingroad.site/2019/02/01/Hexo/</loc>
     <lastmod>2019-03-08</lastmod>
   </url>  <url>
     <loc>https://blog.kingroad.site/2019/03/08/Mac-item2%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/</loc>
+    <lastmod>2019-03-08</lastmod>
+  </url>  <url>
+    <loc>https://blog.kingroad.site/2019/03/08/Mysql%E7%9A%84%E6%8E%92%E4%BB%96%E9%94%81%E5%92%8C%E5%85%B1%E4%BA%AB%E9%94%81/</loc>
     <lastmod>2019-03-08</lastmod>
   </url>
 </urlset>
