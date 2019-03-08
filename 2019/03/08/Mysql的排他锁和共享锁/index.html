@@ -96,24 +96,25 @@
 
 
 
-  <meta name="description" content="王路的个人博客">
-<meta name="keywords" content="PHP|技术|MYSQL|LINUX|服务器|数据库|SQL">
-<meta property="og:type" content="website">
-<meta property="og:title" content="平凡之路">
-<meta property="og:url" content="https://blog.kingroad.site/archives/index.html">
+  <meta name="description" content="今天看代码看到有select name from user where id = 1 for update,有点懵逼，完全没有见过，只能说自己见识少了，那就只能学习一下。先做一下基本知识了解： 锁的基本概念　　当多事务争取一个资源时，有可能导致数据不一致，这个时候需要一种机制限制，并且将数据访问顺序化，用来保证数据库数据的一致性，锁就是其中的一种机制。我们可以用商场的试衣间来做个比喻，商场">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql的排他锁和共享锁">
+<meta property="og:url" content="https://blog.kingroad.site/2019/03/08/Mysql的排他锁和共享锁/index.html">
 <meta property="og:site_name" content="平凡之路">
-<meta property="og:description" content="王路的个人博客">
+<meta property="og:description" content="今天看代码看到有select name from user where id = 1 for update,有点懵逼，完全没有见过，只能说自己见识少了，那就只能学习一下。先做一下基本知识了解： 锁的基本概念　　当多事务争取一个资源时，有可能导致数据不一致，这个时候需要一种机制限制，并且将数据访问顺序化，用来保证数据库数据的一致性，锁就是其中的一种机制。我们可以用商场的试衣间来做个比喻，商场">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-08T06:44:11.827Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="平凡之路">
-<meta name="twitter:description" content="王路的个人博客">
+<meta name="twitter:title" content="Mysql的排他锁和共享锁">
+<meta name="twitter:description" content="今天看代码看到有select name from user where id = 1 for update,有点懵逼，完全没有见过，只能说自己见识少了，那就只能学习一下。先做一下基本知识了解： 锁的基本概念　　当多事务争取一个资源时，有可能导致数据不一致，这个时候需要一种机制限制，并且将数据访问顺序化，用来保证数据库数据的一致性，锁就是其中的一种机制。我们可以用商场的试衣间来做个比喻，商场">
 
 
 
 
 
 
-  <link rel="canonical" href="https://blog.kingroad.site/archives/">
+  <link rel="canonical" href="https://blog.kingroad.site/2019/03/08/Mysql的排他锁和共享锁/">
 
 
 
@@ -123,7 +124,7 @@
   };
 </script>
 
-  <title>归档 | 平凡之路</title>
+  <title>Mysql的排他锁和共享锁 | 平凡之路</title>
   
 
 
@@ -171,7 +172,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -281,7 +282,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -328,31 +329,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -398,218 +374,223 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.kingroad.site/2019/03/08/Mysql的排他锁和共享锁/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang Lu">
+      <meta itemprop="description" content="王路的个人博客">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="平凡之路">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Mysql的排他锁和共享锁
+
+              
+            
+          </h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-08 14:35:23 / 修改时间：14:44:11" itemprop="dateCreated datePublished" datetime="2019-03-08T14:35:23+08:00">2019-03-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 5 篇日志。 继续努力。
-      </span>
-      
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
 
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/03/08/Mysql的排他锁和共享锁/" itemprop="url">
+          
             
-              <span itemprop="name">Mysql的排他锁和共享锁</span>
             
-          </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-08T14:35:23+08:00" content="2019-03-08">
-          03-08
-        </time>
-      </div>
+          
+          
 
-    </header>
-  </article>
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
+          
 
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/03/08/Mac-item2常用快捷键/" itemprop="url">
-            
-              <span itemprop="name">Mac item2常用快捷键</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-08T14:05:13+08:00" content="2019-03-08">
-          03-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/02/20/测试文章/" itemprop="url">
-            
-              <span itemprop="name">测试文章</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-20T16:54:52+08:00" content="2019-02-20">
-          02-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>　　今天看代码看到有select name from user where id = 1 for update,有点懵逼，完全没有见过，只能说自己见识少了，那就只能学习一下。先做一下基本知识了解：</p>
+<h2 id="锁的基本概念"><a href="#锁的基本概念" class="headerlink" title="锁的基本概念"></a>锁的基本概念</h2><p>　　当多事务争取一个资源时，有可能导致数据不一致，这个时候需要一种机制限制，并且将数据访问顺序化，用来保证数据库数据的一致性，锁就是其中的一种机制。我们可以用商场的试衣间来做个比喻，商场<br><a id="more"></a><br>里得每个试衣间都可供多个消费者使用，因此可能出现多个消费者同时试衣服需要使用试衣间，这时候就产生冲突了，为了避免冲突，试衣间装了锁（其实就是进去之后把门拴住），某一个试衣服的人在试衣间里把锁锁住了，其他顾客就不能再从外面打开了，只能等待里面的顾客，试完衣服，从里面把锁打开，外面的人才能进去（网上找到的比喻，非常形象）。不过我想要是并发了就尴尬了，哈哈。</p>
+<h2 id="锁的基本类型"><a href="#锁的基本类型" class="headerlink" title="锁的基本类型"></a>锁的基本类型</h2><p>　　数据库上的操作可以归纳为两种：读和写。<br>　　<br>　　多个事务同时读取一个对象的时候，是不会有冲突的。同时读和写，或者同时写才会产生冲突。因此为了提高数据库的并发性能，通常会定义两种锁：共享锁和排它锁。</p>
+<h2 id="共享锁（Shared-Lock，也叫S锁）"><a href="#共享锁（Shared-Lock，也叫S锁）" class="headerlink" title="共享锁（Shared Lock，也叫S锁）"></a>共享锁（Shared Lock，也叫S锁）</h2><p>　　共享锁(S)表示对数据进行读操作。因此多个事务可以同时为一个对象加共享锁。（如果试衣间的门还没被锁上，顾客都能够同时进去参观）<br>　　<br>　　产生共享锁的sql：select * from ad_plan lock in share mode;</p>
+<h2 id="共享锁的使用场景"><a href="#共享锁的使用场景" class="headerlink" title="共享锁的使用场景"></a>共享锁的使用场景</h2><p>　　SELECT … LOCK IN SHARE MODE走的是IS锁(意向共享锁)，即在符合条件的rows上都加了共享锁，这样的话，其他人可以读取这些记录，也可以继续添加IS锁，但是无法修改这些记录直到你这个加锁的过程执行完成(完成的情况有：事务的提交，事务的回滚，否则直接锁等待超时)。<br>　　<br>　　SELECT … LOCK IN SHARE MODE的应用场景适合于两张表存在关系时的写操作，拿mysql官方文档的例子来说，一个表是child表，一个是parent表，假设child表的某一列child_id映射到parent表的c_child_id列，那么从业务角度讲，此时我直接insert一条child_id=100记录到child表是存在风险的，因为刚insert的时候可能在parent表里删除了这条c_child_id=100的记录，那么业务数据就存在不一致的风险。正确的方法是再插入时执行select * from parent where c_child_id=100 lock in share mode,锁定了parent表的这条记录，然后执行insert into child(child_id) values (100)就不会存在这种问题了。</p>
+<h2 id="排他锁-Exclusive-Lock，也叫X锁"><a href="#排他锁-Exclusive-Lock，也叫X锁" class="headerlink" title="排他锁(Exclusive Lock，也叫X锁)"></a>排他锁(Exclusive Lock，也叫X锁)</h2><p>　　排他锁也叫写锁(X)。</p>
+<p>　　排他锁表示对数据进行写操作。如果一个事务对对象加了排他锁，其他事务就不能再给它加任何锁了。(某个顾客把试衣间从里面反锁了，其他顾客想要使用这个试衣间，就只有等待锁从里面给打开了)<br>产生排他锁的sql： select * from ad_plan for update;看到了吧，for update出现了，所以for update 是排他锁，涨知识了。</p>
+<h2 id="排他锁的使用场景："><a href="#排他锁的使用场景：" class="headerlink" title="排他锁的使用场景："></a>排他锁的使用场景：</h2><ul>
+<li>使用场景一：订单的商品数量</li>
+</ul>
+<p>但是如果是同一张表的应用场景，举个例子，电商系统中计算一种商品的剩余数量，在产生订单之前需要确认商品数量&gt;=1,产生订单之后应该将商品数量减1。
+　　</p>
+<blockquote>
+<p>1 select amount from product where product_name=’XX’;<br>2 update product set amount=amount-1 where product_name=’XX’;</p>
+</blockquote>
+<p>　　显然1的做法是是有问题，因为如果1查询出amount为1，但是这时正好其他session也买了该商品并产生了订单，那么amount就变成了0，那么这时第二步再执行就有问题。那么采用lock in share mode可行吗，也是不合理的，因为两个session同时锁定该行记录时，这时两个session再update时必然会产生死锁导致事务回滚。以下是操作范例(按时间顺序)</p>
+<ul>
+<li>使用场景二：数据表的状态</li>
+</ul>
+<p>　　如果存在一张表记录一个商品的状态，在订单的变化过程中，订单的状态是不断变化的，而且变化的过程中肯定也会有并发的问题，而且很多时候与其他系统有交互，会存在补偿的情况，所以并发的可能性很大,补偿或者为了增加状态修改的成功可能性，2次改变状态的情况也有，楼主就遇到了这种情况，真操蛋。于是看到有这样的for update写法。</p>
+<blockquote>
+<p>1  update order set status = 1 where product_id = ‘1’;<br>2 insert order_flow  (…………..) value (………)</p>
+</blockquote>
+<p>　　这样的情况下就有可能订单的状态已经更新完成了，但是补偿这些额外的消息把状态又更新为待处理或者插入了多条流水的情况(多条流水的可能性大，状态的那种可能补偿滞后)。这个时候就可以使用select …. from order where order_id = ‘1’ for update，先锁住要修改状态的表，这样就不会别人操作了，自己先后面把流水插入，然后更新状态，完美。但是加了锁之后性能就很慢了，担心性能影响，而且有可能存在死锁的情况，后面我就修改为流水表中增加一个唯一索引，这样插入流水报错就是已经处理过的记录了。这样就不会存在性能问题。</p>
+<p>　　通过对比，lock in share mode适用于两张表存在业务关系时的一致性要求，for  update适用于操作同一张表时的一致性要求。</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/02/19/hello-hello/" itemprop="url">
-            
-              <span itemprop="name">hello hello</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-19T14:51:49+08:00" content="2019-02-19">
-          02-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/02/19/hello-world/" itemprop="url">
-            
-              <span itemprop="name">Hello World</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-19T14:12:33+08:00" content="2019-02-19">
-          02-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/08/Mac-item2常用快捷键/" rel="next" title="Mac item2常用快捷键">
+                <i class="fa fa-chevron-left"></i> Mac item2常用快捷键
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -630,8 +611,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -713,6 +703,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#锁的基本概念"><span class="nav-number">1.</span> <span class="nav-text">锁的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#锁的基本类型"><span class="nav-number">2.</span> <span class="nav-text">锁的基本类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#共享锁（Shared-Lock，也叫S锁）"><span class="nav-number">3.</span> <span class="nav-text">共享锁（Shared Lock，也叫S锁）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#共享锁的使用场景"><span class="nav-number">4.</span> <span class="nav-text">共享锁的使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排他锁-Exclusive-Lock，也叫X锁"><span class="nav-number">5.</span> <span class="nav-text">排他锁(Exclusive Lock，也叫X锁)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排他锁的使用场景："><span class="nav-number">6.</span> <span class="nav-text">排他锁的使用场景：</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -866,6 +873,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
 
   
 
@@ -876,6 +887,8 @@
 
   
 
+
+  
 
 
   
