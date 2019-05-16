@@ -96,24 +96,25 @@
 
 
 
-  <meta name="description" content="王路的个人博客">
-<meta name="keywords" content="PHP|技术|MYSQL|LINUX|服务器|数据库|SQL">
-<meta property="og:type" content="website">
-<meta property="og:title" content="平凡之路">
-<meta property="og:url" content="https://blog.kingroad.site/archives/2019/03/index.html">
+  <meta name="description" content="分区表的原理分区表是由多个相关的底层表实现，这些底层表也是由句柄对象表示，所以我们也可以直接访问各个分区，存储引擎管理分区的各个底层表和管理普通表一样（所有的底层表都必须使用相同的存储引擎），分区表的索引只是在各个底层表上各自加上一个相同的索引，从存储引擎的角度来看，底层表和一个普通表没有任何不同，存储引擎也无须知道这是一个普通表还是一个分区表的一部分。">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql分区表的原理和优缺点">
+<meta property="og:url" content="https://blog.kingroad.site/2019/05/16/Mysql分区表的原理和优缺点/index.html">
 <meta property="og:site_name" content="平凡之路">
-<meta property="og:description" content="王路的个人博客">
+<meta property="og:description" content="分区表的原理分区表是由多个相关的底层表实现，这些底层表也是由句柄对象表示，所以我们也可以直接访问各个分区，存储引擎管理分区的各个底层表和管理普通表一样（所有的底层表都必须使用相同的存储引擎），分区表的索引只是在各个底层表上各自加上一个相同的索引，从存储引擎的角度来看，底层表和一个普通表没有任何不同，存储引擎也无须知道这是一个普通表还是一个分区表的一部分。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-05-16T09:52:16.873Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="平凡之路">
-<meta name="twitter:description" content="王路的个人博客">
+<meta name="twitter:title" content="Mysql分区表的原理和优缺点">
+<meta name="twitter:description" content="分区表的原理分区表是由多个相关的底层表实现，这些底层表也是由句柄对象表示，所以我们也可以直接访问各个分区，存储引擎管理分区的各个底层表和管理普通表一样（所有的底层表都必须使用相同的存储引擎），分区表的索引只是在各个底层表上各自加上一个相同的索引，从存储引擎的角度来看，底层表和一个普通表没有任何不同，存储引擎也无须知道这是一个普通表还是一个分区表的一部分。">
 
 
 
 
 
 
-  <link rel="canonical" href="https://blog.kingroad.site/archives/2019/03/">
+  <link rel="canonical" href="https://blog.kingroad.site/2019/05/16/Mysql分区表的原理和优缺点/">
 
 
 
@@ -123,7 +124,7 @@
   };
 </script>
 
-  <title>归档 | 平凡之路</title>
+  <title>Mysql分区表的原理和优缺点 | 平凡之路</title>
   
 
 
@@ -171,7 +172,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -281,7 +282,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -328,31 +329,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -398,183 +374,226 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.kingroad.site/2019/05/16/Mysql分区表的原理和优缺点/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang Lu">
+      <meta itemprop="description" content="王路的个人博客">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="平凡之路">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Mysql分区表的原理和优缺点
+
+              
+            
+          </h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-16 17:48:25 / 修改时间：17:52:16" itemprop="dateCreated datePublished" datetime="2019-05-16T17:48:25+08:00">2019-05-16</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 8 篇日志。 继续努力。
-      </span>
-      
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
 
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/03/20/Github创建公钥SSH-key/" itemprop="url">
+          
             
-              <span itemprop="name">Github创建公钥SSH key</span>
             
-          </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-20T10:40:34+08:00" content="2019-03-20">
-          03-20
-        </time>
-      </div>
+          
+          
 
-    </header>
-  </article>
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
+          
 
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/03/08/GitHub的Fork解读/" itemprop="url">
-            
-              <span itemprop="name">GitHub的Fork解读</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-08T16:20:29+08:00" content="2019-03-08">
-          03-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/03/08/Mysql的排他锁和共享锁/" itemprop="url">
-            
-              <span itemprop="name">Mysql的排他锁和共享锁</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-08T14:35:23+08:00" content="2019-03-08">
-          03-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h2 id="分区表的原理"><a href="#分区表的原理" class="headerlink" title="分区表的原理"></a>分区表的原理</h2><p>分区表是由多个相关的底层表实现，这些底层表也是由句柄对象表示，所以我们也可以直接访问各个分区，存储引擎管理分区的各个底层表和管理普通表一样（所有的底层表都必须使用相同的存储引擎），分区表的索引只是在各个底层表上各自加上一个相同的索引，从存储引擎的角度来看，底层表和一个普通表没有任何不同，存储引擎也无须知道这是一个普通表还是一个分区表的一部分。</p>
+<a id="more"></a>
+<h3 id="在分区表上的操作按照下面的操作逻辑进行："><a href="#在分区表上的操作按照下面的操作逻辑进行：" class="headerlink" title="在分区表上的操作按照下面的操作逻辑进行："></a>在分区表上的操作按照下面的操作逻辑进行：</h3><p>select查询：</p>
+<p>当查询一个分区表的时候，分区层先打开并锁住所有的底层表，优化器判断是否可以过滤部分分区，然后再调用对应的存储引擎接口访问各个分区的数据</p>
+<p>insert操作：</p>
+<p>当写入一条记录时，分区层打开并锁住所有的底层表，然后确定哪个分区接受这条记录，再将记录写入对应的底层表</p>
+<p>delete操作：</p>
+<p>当删除一条记录时，分区层先打开并锁住所有的底层表，然后确定数据对应的分区，最后对相应底层表进行删除操作</p>
+<p>update操作：</p>
+<p>当更新一条数据时，分区层先打开并锁住所有的底层表，mysql先确定需要更新的记录在哪个分区，然后取出数据并更新，再判断更新后的数据应该放在哪个分区，然后对底层表进行写入操作，并对原数据所在的底层表进行删除操作</p>
+<p>虽然每个操作都会打开并锁住所有的底层表，但这并不是说分区表在处理过程中是锁住全表的，如果存储引擎能够自己实现行级锁，如：innodb，则会在分区层释放对应的表锁，这个加锁和解锁过程与普通Innodb上的查询类似。</p>
+<h2 id="在下面的场景中，分区可以起到非常大的作用："><a href="#在下面的场景中，分区可以起到非常大的作用：" class="headerlink" title="在下面的场景中，分区可以起到非常大的作用："></a>在下面的场景中，分区可以起到非常大的作用：</h2><p>A：表非常大以至于无法全部都放在内存中，或者只在表的最后部分有热点数据，其他都是历史数据</p>
+<p>B：分区表的数据更容易维护，如：想批量删除大量数据可以使用清除整个分区的方式。另外，还可以对一个独立分区进行优化、检查、修复等操作</p>
+<p>C：分区表的数据可以分布在不同的物理设备上，从而高效地利用多个硬件设备</p>
+<p>D：可以使用分区表来避免某些特殊的瓶颈，如：innodb的单个索引的互斥访问，ext3文件系统的inode锁竞争等</p>
+<p>E：如果需要，还可以备份和恢复独立的分区，这在非常大的数据集的场景下效果非常好</p>
+<p>F：优化查询，在where字句中包含分区列时，可以只使用必要的分区来提高查询效率，同时在涉及sum()和count()这类聚合函数的查询时，可以在每个分区上面并行处理，最终只需要汇总所有分区得到的结果。</p>
+<h2 id="分区本身也有一些限制："><a href="#分区本身也有一些限制：" class="headerlink" title="分区本身也有一些限制："></a>分区本身也有一些限制：</h2><p>A：一个表最多只能有1024个分区（mysql5.6之后支持8192个分区）</p>
+<p>B：在mysql5.1中分区表达式必须是整数，或者是返回整数的表达式，在5.5之后，某些场景可以直接使用字符串列和日期类型列来进行分区（使用varchar字符串类型列时，一般还是字符串的日期作为分区）。</p>
+<p>C：如果分区字段中有主键或者唯一索引列，那么所有主键列和唯一索引列都必须包含进来，如果表中有主键或唯一索引，那么分区键必须是主键或唯一索引</p>
+<p>D：分区表中无法使用外键约束</p>
+<p>E：mysql数据库支持的分区类型为水平分区，并不支持垂直分区，因此，mysql数据库的分区中索引是局部分区索引，一个分区中既存放了数据又存放了索引，而全局分区是指的数据库放在各个分区中，但是所有的数据的索引放在另外一个对象中</p>
+<p>F：目前mysql不支持空间类型和临时表类型进行分区。不支持全文索引</p>
+<h2 id="子分区的建立需要注意以下几个问题："><a href="#子分区的建立需要注意以下几个问题：" class="headerlink" title="子分区的建立需要注意以下几个问题："></a>子分区的建立需要注意以下几个问题：</h2><p>A：每个子分区的数量必须相同</p>
+<p>B：只要在一个分区表的任何分区上使用subpartition来明确定义任何子分区，就必须在所有分区上定义子分区，不能漏掉一些分区不进行子分区。</p>
+<p>C：每个subpartition子句必须包括子分区的一个名字</p>
+<p>D：子分区的名字必须是唯一的，不能在一张表中出现重名的子分区</p>
+<p>E：mysql数据库的分区总是把null当作比任何非null更小的值，这和数据库中处理null值的order by操作是一样的，升序排序时null总是在最前面，因此对于不同的分区类型，mysql数据库对于null的处理也各不相同。对于range分区，如果向分区列插入了null，则mysql数据库会将该值放入最左边的分区，注意，如果删除分区，分区下的所有内容都从磁盘中删掉了，null所在分区被删除，null值也就跟着被删除了。在list分区下要使用null，则必须显式地定义在分区的散列值中，否则插入null时会报错。hash和key分区对于null的处理方式和range,list分区不一样，任何分区函数都会将null返回为0.</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/03/08/Mac-item2常用快捷键/" itemprop="url">
-            
-              <span itemprop="name">Mac item2常用快捷键</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-08T14:05:13+08:00" content="2019-03-08">
-          03-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/16/MySQL-DDL-大数据表使用pt-online-schema-change/" rel="next" title="MySQL DDL 大数据表使用pt-online-schema-change">
+                <i class="fa fa-chevron-left"></i> MySQL DDL 大数据表使用pt-online-schema-change
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -595,8 +614,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -682,6 +710,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分区表的原理"><span class="nav-number">1.</span> <span class="nav-text">分区表的原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在分区表上的操作按照下面的操作逻辑进行："><span class="nav-number">1.1.</span> <span class="nav-text">在分区表上的操作按照下面的操作逻辑进行：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在下面的场景中，分区可以起到非常大的作用："><span class="nav-number">2.</span> <span class="nav-text">在下面的场景中，分区可以起到非常大的作用：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分区本身也有一些限制："><span class="nav-number">3.</span> <span class="nav-text">分区本身也有一些限制：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子分区的建立需要注意以下几个问题："><span class="nav-number">4.</span> <span class="nav-text">子分区的建立需要注意以下几个问题：</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -835,6 +880,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
 
   
 
@@ -845,6 +894,8 @@
 
   
 
+
+  
 
 
   
